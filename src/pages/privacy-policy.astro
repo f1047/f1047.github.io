@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Privacy Policy | f1047" lang="ja">
+	<main class="policy-page">
+		<article class="policy-content">
+			<h1>Privacy Policy</h1>
+			<p>
+				このサイトでは、<span class="latin-text">Google Analytics</span>を利用してアクセス解析を行っています。
+				これにより利用者のサイト訪問に関する情報を収集しますが、個人を特定できる情報は取得していません。
+				<span class="latin-text">Google Analytics</span>の利用により収集されたデータは、<span
+					class="latin-text">Google</span
+				>社のプライバシーポリシーに基づいて管理されます。
+				詳細は、以下のリンクから<span class="latin-text">Google Analytics</span>の利用規約とプライバシーポリシーをご確認ください。
+			</p>
+			<nav class="policy-links" aria-label="Google Analytics policy links">
+				<a href="https://www.google.co.jp/analytics/terms/jp.html"
+					>Google アナリティクス サービス利用規約</a
+				>
+				<a href="https://policies.google.com/privacy?hl=ja">プライバシーポリシーと規約</a>
+			</nav>
+		</article>
+	</main>
+</Layout>
+
+<style>
+	.policy-page {
+		position: relative;
+		min-height: calc(100svh - var(--site-header-height) - var(--site-footer-height));
+		box-sizing: border-box;
+		padding: 64px 24px;
+		background: rgba(255, 255, 255, 0.04);
+		-webkit-backdrop-filter: blur(var(--site-content-blur));
+		backdrop-filter: blur(var(--site-content-blur));
+		color: #173b31;
+	}
+
+	.policy-content {
+		width: min(100%, 760px);
+		margin: 0 auto;
+	}
+
+	h1 {
+		margin: 0 0 28px;
+		font-size: 2.6rem;
+		font-weight: 760;
+		letter-spacing: 0;
+		line-height: 1.12;
+	}
+
+	p {
+		margin: 0;
+		color: rgba(23, 59, 49, 0.82);
+		font-size: 1.08rem;
+		font-weight: 440;
+		letter-spacing: 0;
+		line-height: 2;
+	}
+
+	.latin-text {
+		font-weight: 520;
+	}
+
+	.policy-links {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin-top: 34px;
+		gap: 16px;
+	}
+
+	.policy-links a {
+		color: var(--color-accent);
+		font-size: 1.02rem;
+		font-weight: 700;
+		letter-spacing: 0;
+		text-decoration-color: var(--color-accent-underline);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 5px;
+	}
+
+	.policy-links a:hover {
+		color: var(--color-accent-strong);
+		text-decoration-color: var(--color-accent-strong-underline);
+	}
+
+	@media (max-width: 720px) {
+		.policy-page {
+			padding: 48px 20px;
+		}
+
+		h1 {
+			font-size: 2.1rem;
+		}
+
+		p {
+			font-size: 1rem;
+			line-height: 1.9;
+		}
+	}
+</style>

@@ -1,11 +1,76 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<main class="landing landing-type">
+		<section class="intro" aria-labelledby="intro-title">
+			<h1 id="intro-title"><span class="headline-text">Hi, I'm <span class="accent">f1047</span></span><span class="bee">🐝</span></h1>
+		</section>
+	</main>
 </Layout>
+
+<style>
+	.landing-type {
+		font-family: var(--font-sans);
+		font-optical-sizing: auto;
+		font-weight: 760;
+		font-style: normal;
+	}
+
+	.landing {
+		position: relative;
+		display: grid;
+		min-height: calc(100svh - var(--site-header-height) - var(--site-footer-height));
+		place-items: center;
+		overflow: hidden;
+		background: rgba(255, 255, 255, 0.04);
+		-webkit-backdrop-filter: blur(var(--site-content-blur));
+		backdrop-filter: blur(var(--site-content-blur));
+		color: #173b31;
+	}
+
+	.intro {
+		width: min(100% - 40px, 960px);
+		padding: 56px 0;
+		text-align: center;
+	}
+
+	h1 {
+		display: inline-flex;
+		align-items: baseline;
+		justify-content: center;
+		margin: 0;
+		font-size: 5rem;
+		font-weight: 760;
+		letter-spacing: 0;
+		line-height: 1.04;
+		text-wrap: balance;
+		text-shadow: 0 2px 28px rgba(255, 255, 255, 0.68);
+	}
+
+	:global(.headline-text) {
+		line-height: inherit;
+	}
+
+	:global(.accent) {
+		color: var(--color-accent);
+	}
+
+	:global(.bee) {
+		display: inline-block;
+		line-height: 1;
+	}
+
+	@media (max-width: 720px) {
+		.intro {
+			width: min(100% - 32px, 560px);
+			padding: 40px 0;
+		}
+
+		h1 {
+			font-size: 3.2rem;
+			line-height: 1.08;
+		}
+	}
+</style>

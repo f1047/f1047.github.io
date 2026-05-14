@@ -1,5 +1,14 @@
+---
+import { ClientRouter } from 'astro:transitions';
+
+const { title = 'f1047', lang = 'en' } = Astro.props;
+const currentPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const isHome = currentPath === '/';
+const isPrivacyPolicy = currentPath === '/privacy-policy/';
+---
+
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-G585X6V54Q"></script>
@@ -9,17 +18,51 @@
 			gtag('js', new Date());
 
 			gtag('config', 'G-G585X6V54Q');
+
+			document.addEventListener('astro:page-load', () => {
+				gtag('config', 'G-G585X6V54Q', {
+					page_title: document.title,
+					page_location: window.location.href,
+					page_path: window.location.pathname,
+				});
+			});
 		</script>
 
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+			rel="stylesheet"
+		/>
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<ClientRouter fallback="animate" />
 	</head>
 	<body>
-		<slot />
+		<div class="site-background" aria-hidden="true" transition:persist>
+			<img src="/landing-background.png" alt="" fetchpriority="high" />
+		</div>
+		<div class="site-shell">
+			<header class="site-header">
+				<nav class="site-nav" aria-label="Primary navigation">
+					<a class="site-brand" href="/">f1047</a>
+					<div class="site-links">
+						<a href="/" aria-current={isHome ? 'page' : undefined}>Home</a>
+						<a href="/privacy-policy/" aria-current={isPrivacyPolicy ? 'page' : undefined}
+							>Privacy Policy</a
+						>
+					</div>
+				</nav>
+			</header>
+			<div class="page-stage" transition:name="page-stage">
+				<slot />
+			</div>
+			<footer class="site-footer" transition:persist>© 2026 f1047. All Rights Reserved.</footer>
+		</div>
 	</body>
 </html>
 
@@ -29,5 +72,183 @@
 		margin: 0;
 		width: 100%;
 		height: 100%;
+	}
+
+	:root {
+		--site-header-height: 63px;
+		--site-footer-height: 43px;
+		--color-accent: #d8874a;
+		--color-accent-strong: #b86f36;
+		--color-accent-underline: rgba(216, 135, 74, 0.34);
+		--color-accent-strong-underline: rgba(184, 111, 54, 0.38);
+		--site-band-blur: 16px;
+		--site-content-blur: 6px;
+		--font-sans:
+			'Nunito Sans',
+			'Hiragino Sans',
+			'Yu Gothic UI',
+			'Yu Gothic',
+			'Hiragino Kaku Gothic ProN',
+			'Noto Sans CJK JP',
+			'Noto Sans JP',
+			sans-serif;
+	}
+
+	body {
+		min-height: 100svh;
+		font-family: var(--font-sans);
+		font-optical-sizing: auto;
+		background: #fffdf4;
+	}
+
+	.site-background {
+		position: fixed;
+		inset: 0;
+		z-index: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.site-background img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.site-background::after {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgba(255, 253, 240, 0.18), rgba(209, 239, 218, 0.22)),
+			rgba(255, 255, 255, 0.08);
+		content: '';
+	}
+
+	.site-shell {
+		position: relative;
+		z-index: 1;
+		min-height: 100%;
+	}
+
+	.page-stage {
+		min-height: calc(100svh - var(--site-header-height) - var(--site-footer-height));
+	}
+
+	.site-header {
+		position: relative;
+		z-index: 10;
+		background: rgba(255, 253, 244, 0.24);
+		border-bottom: 1px solid rgba(23, 59, 49, 0.14);
+		-webkit-backdrop-filter: blur(var(--site-band-blur));
+		backdrop-filter: blur(var(--site-band-blur));
+	}
+
+	.site-nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: min(100% - 48px, 1120px);
+		min-height: 62px;
+		margin: 0 auto;
+		gap: 24px;
+	}
+
+	.site-brand,
+	.site-links a {
+		color: #173b31;
+		font-size: 1rem;
+		font-weight: 760;
+		letter-spacing: 0;
+		text-decoration: none;
+	}
+
+	.site-brand {
+		color: var(--color-accent);
+		font-size: 1.08rem;
+	}
+
+	.site-links {
+		display: flex;
+		align-items: center;
+		gap: 22px;
+	}
+
+	.site-links a {
+		color: rgba(23, 59, 49, 0.74);
+	}
+
+	.site-links a:hover,
+	.site-links a[aria-current='page'] {
+		color: #173b31;
+	}
+
+	.site-footer {
+		box-sizing: border-box;
+		min-height: var(--site-footer-height);
+		padding: 12px 24px max(8px, env(safe-area-inset-bottom));
+		background: rgba(255, 253, 244, 0.24);
+		border-top: 1px solid rgba(23, 59, 49, 0.14);
+		color: rgba(23, 59, 49, 0.68);
+		font-size: 0.9rem;
+		font-weight: 650;
+		letter-spacing: 0;
+		text-align: center;
+		-webkit-backdrop-filter: blur(var(--site-band-blur));
+		backdrop-filter: blur(var(--site-band-blur));
+	}
+
+	@media (max-width: 720px) {
+		:root {
+			--site-header-height: 59px;
+			--site-footer-height: 41px;
+		}
+
+		.site-nav {
+			width: min(100% - 32px, 1120px);
+			min-height: 58px;
+			gap: 16px;
+		}
+
+		.site-brand,
+		.site-links a {
+			font-size: 0.94rem;
+		}
+
+		.site-links {
+			gap: 14px;
+		}
+	}
+</style>
+
+<style is:global>
+	::view-transition-old(page-stage) {
+		animation: page-exit 180ms cubic-bezier(0.4, 0, 0.2, 1) both;
+	}
+
+	::view-transition-new(page-stage) {
+		animation: page-enter 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	@keyframes page-exit {
+		to {
+			opacity: 0;
+			filter: blur(2px);
+		}
+	}
+
+	@keyframes page-enter {
+		from {
+			opacity: 0;
+			filter: blur(2px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		::view-transition-old(page-stage),
+		::view-transition-new(page-stage) {
+			animation: none;
+		}
 	}
 </style>
