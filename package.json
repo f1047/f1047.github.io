@@ -12,7 +12,8 @@
 		"astro": "astro",
 		"format": "biome format --write .",
 		"format:check": "biome format .",
-		"check": "astro check"
+		"check": "astro check",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"astro": "6.3.1"
@@ -20,6 +21,7 @@
 	"devDependencies": {
 		"@astrojs/check": "0.9.9",
 		"@biomejs/biome": "2.4.15",
+		"husky": "9.1.7",
 		"typescript": "6.0.3"
 	}
 }
