@@ -3,7 +3,6 @@ import { ClientRouter } from 'astro:transitions';
 
 const { title = 'f1047', lang = 'en' } = Astro.props;
 const currentPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
-const isHome = currentPath === '/';
 const isPrivacyPolicy = currentPath === '/privacy-policy/';
 ---
 
@@ -51,7 +50,6 @@ const isPrivacyPolicy = currentPath === '/privacy-policy/';
 				<nav class="site-nav" aria-label="Primary navigation">
 					<a class="site-brand" href="/">f1047</a>
 					<div class="site-links">
-						<a href="/" aria-current={isHome ? 'page' : undefined}>Home</a>
 						<a href="/privacy-policy/" aria-current={isPrivacyPolicy ? 'page' : undefined}
 							>Privacy Policy</a
 						>
