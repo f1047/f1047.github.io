@@ -1,20 +1,47 @@
 [
-  {
-    "label": "astro dev",
-    "command": "bun",
-    "args": ["dev"],
-    "cwd": "$ZED_WORKTREE_ROOT",
-    "use_new_terminal": false,
-    "allow_concurrent_runs": true,
-    "save": "all"
-  },
-  {
-    "label": "astro build",
-    "command": "bun",
-    "args": ["build"],
-    "cwd": "$ZED_WORKTREE_ROOT",
-    "use_new_terminal": false,
-    "allow_concurrent_runs": false,
-    "save": "all"
-  }
+	{
+		"label": "astro dev",
+		"command": "bun",
+		"args": ["dev"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+		"use_new_terminal": false,
+		"allow_concurrent_runs": true,
+		"save": "all"
+	},
+	{
+		"label": "astro build",
+		"command": "bun",
+		"args": ["build"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+		"use_new_terminal": false,
+		"allow_concurrent_runs": false,
+		"save": "all"
+	},
+	{
+		"label": "biome format",
+		"command": "bun",
+		"args": ["format"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+		"use_new_terminal": false,
+		"allow_concurrent_runs": false,
+		"save": "all"
+	},
+	{
+		"label": "biome format check",
+		"command": "bun",
+		"args": ["format:check"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+		"use_new_terminal": false,
+		"allow_concurrent_runs": false,
+		"save": "all"
+	},
+	{
+		"label": "astro check",
+		"command": "bun",
+		"args": ["check"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+		"use_new_terminal": false,
+		"allow_concurrent_runs": false,
+		"save": "all"
+	}
 ]

@@ -1,17 +1,19 @@
 ---
-import { ClientRouter } from 'astro:transitions';
-import GitHubIcon from '../components/GitHubIcon.astro';
+import { ClientRouter } from "astro:transitions";
+import GitHubIcon from "../components/GitHubIcon.astro";
 
-const { title = 'f1047', lang = 'en' } = Astro.props;
-const currentPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
-const isPrivacyPolicy = currentPath === '/privacy-policy/';
+const { title = "f1047", lang = "en" } = Astro.props;
+const currentPath = Astro.url.pathname.endsWith("/")
+	? Astro.url.pathname
+	: `${Astro.url.pathname}/`;
+const isPrivacyPolicy = currentPath === "/privacy-policy/";
 ---
 
 <!doctype html>
 <html lang={lang}>
 	<head>
 		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-G585X6V54Q"></script>
+		<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-G585X6V54Q"></script>
 		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
