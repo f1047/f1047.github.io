@@ -85,12 +85,29 @@ const isPrivacyPolicy = currentPath === '/privacy-policy/';
 	:root {
 		--site-header-height: 63px;
 		--site-footer-height: 43px;
+		--site-content-min-height: calc(100svh - var(--site-header-height) - var(--site-footer-height));
+		--site-width: 1120px;
+		--site-gutter: 48px;
+		--site-gutter-mobile: 32px;
 		--color-accent: #d8874a;
 		--color-accent-strong: #b86f36;
 		--color-accent-underline: rgba(216, 135, 74, 0.34);
 		--color-accent-strong-underline: rgba(184, 111, 54, 0.38);
+		--color-page-bg: #fffdf4;
+		--color-text: #173b31;
+		--color-text-nav: rgba(23, 59, 49, 0.74);
+		--color-text-body: rgba(23, 59, 49, 0.82);
+		--color-text-muted: rgba(23, 59, 49, 0.68);
+		--color-border-soft: rgba(23, 59, 49, 0.14);
+		--color-glass-band: rgba(255, 253, 244, 0.24);
+		--color-glass-page: rgba(255, 255, 255, 0.04);
 		--site-band-blur: 16px;
 		--site-content-blur: 6px;
+		--nav-icon-target: 36px;
+		--icon-size-md: 18px;
+		--font-weight-strong: 760;
+		--font-weight-link: 700;
+		--font-weight-body: 440;
 		--font-sans:
 			'Nunito Sans',
 			'Hiragino Sans',
@@ -106,7 +123,7 @@ const isPrivacyPolicy = currentPath === '/privacy-policy/';
 		min-height: 100svh;
 		font-family: var(--font-sans);
 		font-optical-sizing: auto;
-		background: #fffdf4;
+		background: var(--color-page-bg);
 	}
 
 	.site-background {
@@ -141,14 +158,14 @@ const isPrivacyPolicy = currentPath === '/privacy-policy/';
 	}
 
 	.page-stage {
-		min-height: calc(100svh - var(--site-header-height) - var(--site-footer-height));
+		min-height: var(--site-content-min-height);
 	}
 
 	.site-header {
 		position: relative;
 		z-index: 10;
-		background: rgba(255, 253, 244, 0.24);
-		border-bottom: 1px solid rgba(23, 59, 49, 0.14);
+		background: var(--color-glass-band);
+		border-bottom: 1px solid var(--color-border-soft);
 		-webkit-backdrop-filter: blur(var(--site-band-blur));
 		backdrop-filter: blur(var(--site-band-blur));
 	}
@@ -157,7 +174,7 @@ const isPrivacyPolicy = currentPath === '/privacy-policy/';
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		width: min(100% - 48px, 1120px);
+		width: min(100% - var(--site-gutter), var(--site-width));
 		min-height: 62px;
 		margin: 0 auto;
 		gap: 24px;
@@ -165,9 +182,9 @@ const isPrivacyPolicy = currentPath === '/privacy-policy/';
 
 	.site-brand,
 	.site-links a {
-		color: #173b31;
+		color: var(--color-text);
 		font-size: 1rem;
-		font-weight: 760;
+		font-weight: var(--font-weight-strong);
 		letter-spacing: 0;
 		text-decoration: none;
 	}
@@ -184,35 +201,35 @@ const isPrivacyPolicy = currentPath === '/privacy-policy/';
 	}
 
 	.site-links a {
-		color: rgba(23, 59, 49, 0.74);
+		color: var(--color-text-nav);
 	}
 
 	.site-links a:hover,
 	.site-links a[aria-current='page'] {
-		color: #173b31;
+		color: var(--color-text);
 	}
 
 	.site-links a.site-repo-link {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 36px;
-		height: 36px;
+		width: var(--nav-icon-target);
+		height: var(--nav-icon-target);
 		padding: 0;
-		color: rgba(23, 59, 49, 0.74);
+		color: var(--color-text-nav);
 	}
 
 	.site-links a.site-repo-link:hover {
-		color: #173b31;
+		color: var(--color-text);
 	}
 
 	.site-footer {
 		box-sizing: border-box;
 		min-height: var(--site-footer-height);
 		padding: 12px 24px max(8px, env(safe-area-inset-bottom));
-		background: rgba(255, 253, 244, 0.24);
-		border-top: 1px solid rgba(23, 59, 49, 0.14);
-		color: rgba(23, 59, 49, 0.68);
+		background: var(--color-glass-band);
+		border-top: 1px solid var(--color-border-soft);
+		color: var(--color-text-muted);
 		font-size: 0.9rem;
 		font-weight: 650;
 		letter-spacing: 0;
@@ -228,7 +245,7 @@ const isPrivacyPolicy = currentPath === '/privacy-policy/';
 		}
 
 		.site-nav {
-			width: min(100% - 32px, 1120px);
+			width: min(100% - var(--site-gutter-mobile), var(--site-width));
 			min-height: 58px;
 			gap: 16px;
 		}

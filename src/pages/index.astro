@@ -14,20 +14,20 @@ import Layout from '../layouts/Layout.astro';
 	.landing-type {
 		font-family: var(--font-sans);
 		font-optical-sizing: auto;
-		font-weight: 760;
+		font-weight: var(--font-weight-strong);
 		font-style: normal;
 	}
 
 	.landing {
 		position: relative;
 		display: grid;
-		min-height: calc(100svh - var(--site-header-height) - var(--site-footer-height));
+		min-height: var(--site-content-min-height);
 		place-items: center;
 		overflow: hidden;
-		background: rgba(255, 255, 255, 0.04);
+		background: var(--color-glass-page);
 		-webkit-backdrop-filter: blur(var(--site-content-blur));
 		backdrop-filter: blur(var(--site-content-blur));
-		color: #173b31;
+		color: var(--color-text);
 	}
 
 	.intro {
@@ -42,7 +42,7 @@ import Layout from '../layouts/Layout.astro';
 		justify-content: center;
 		margin: 0;
 		font-size: 5rem;
-		font-weight: 760;
+		font-weight: var(--font-weight-strong);
 		letter-spacing: 0;
 		line-height: 1.04;
 		text-wrap: balance;
