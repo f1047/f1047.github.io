@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import GitHubIcon from '../components/GitHubIcon.astro';
 
 const { title = 'f1047', lang = 'en' } = Astro.props;
 const currentPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
@@ -53,6 +54,15 @@ const isPrivacyPolicy = currentPath === '/privacy-policy/';
 						<a href="/privacy-policy/" aria-current={isPrivacyPolicy ? 'page' : undefined}
 							>Privacy Policy</a
 						>
+						<a
+							class="site-repo-link"
+							href="https://github.com/f1047/f1047.github.io"
+							target="_blank"
+							rel="noreferrer"
+							aria-label="Open f1047.github.io repository on GitHub"
+						>
+							<GitHubIcon />
+						</a>
 					</div>
 				</nav>
 			</header>
@@ -179,6 +189,20 @@ const isPrivacyPolicy = currentPath === '/privacy-policy/';
 
 	.site-links a:hover,
 	.site-links a[aria-current='page'] {
+		color: #173b31;
+	}
+
+	.site-links a.site-repo-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		padding: 0;
+		color: rgba(23, 59, 49, 0.74);
+	}
+
+	.site-links a.site-repo-link:hover {
 		color: #173b31;
 	}
 
